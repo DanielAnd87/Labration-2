@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  </head>
+    <body id="body">
+      <img src="background.png" id="background-img"></img>
+      <div class="top-container">
+        <button type="menu" id="show-browse-btn">Browse</button>
+        <button type="menu" id="show-favorite-btn">Favorites</button>
+      </div>
+
+      <div id="browse-container" class="page">
+        <input type="search" id="search-field" placeholder="search your feelings..."></input>
+        <div id="reslut-container"></div>
+
+      </div>
+      <div id="favorites-container" class="page">
+        <p id="no-favorites">No favorites yet!</p>
+        <div id="favorites-results"></div>
+        <div id="storage">
+          <div id="add-container" class="reslut-div">
+            <div class="text-container">
+              <input type="text" id="new-character-name" placeholder="Chebacka Jr"></input>
+              <form >
+                <input list="planets" id="planets-list" name="planets" type="search" placeholder="Tattoine">
+                <datalist id="planets">
+                </datalist>
+              </form>
+            </div>
+            <button type="button"  id="add-button" class="result-favorite fas fa-journal-whills"> done</button>
+          </div>
+        </div>
+
+      </div>
+    </body>
+  
+</html>
