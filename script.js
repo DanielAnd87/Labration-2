@@ -5,9 +5,9 @@ let seleceted_for_edit = '';
 let added_characters = [];
 let favorite_id_count = 0;
 
-function is_favorite(name) {
+function is_favorite(id) {
   for (i = 0; i < favorites.length; i++) {
-    if (favorites[i].name === name) {
+    if (favorites[i].id === id) {
       return true;
     }
   }
@@ -57,19 +57,20 @@ function add_to_result(name, home_url, id, result_container, favorites_container
   result_box.append(favorite_btn);
   result_container.append(result_box);
   favorite_btn.addEventListener('click', () => {
-    if (!is_favorite(name)){
+    if (!is_favorite(id)){
       add_a_favorite(name, home_url, id, favorites_container);
       favorite_btn.style.backgroundColor = "#FFE81F";
     }
     else {
-      remove_favorite(id);
+     // remove_favorite(id);
+      document.querySelector(`#${id} #favorite-remover`).click();
       favorite_btn.style.backgroundColor = "aliceblue";
     }
   });
 
 }
 function add_a_favorite(name, homeworld, fav_id) {
-  if (!is_favorite(name)) {
+  if (!is_favorite(fav_id)) {
     document.getElementById('no-favorites').style.display = 'none';
     // Add an element with the name of the character at favorites-div
     let favorite_name = document.createElement('h4');
@@ -132,7 +133,7 @@ function search_from_fetched(result_container, favorites_container, search_strin
   result_container.innerHTML = "";
   for (i = 0; i < added_characters.length; i++) {
     const current_character = added_characters[i];
-    const matches_result = current_character.name.includes(search_string);
+    const matches_result = current_character.name.toLowerCase().includes(search_string.toLowerCase());
     if (matches_result) {
       add_to_result(current_character.name, current_character.homeworld, current_character.id, result_container, favorites_container);
     }
@@ -186,6 +187,17 @@ const callback = event => {
 
     browse_layout.style.opacity = '0%';
     favorite_layout.style.opacity = '100%';
+  });
+  document.getElementById('add-character-button').addEventListener('click', () => {
+    // Add a favorite
+    let new_id = 'fav' + favorite_id_count;
+    const no_name = 'Unknown';
+    add_a_favorite(no_name, no_name, new_id);
+    favorite_id_count++;
+    // Push favorite object to added-characters
+    added_characters.push({name: no_name, homeworld: no_name, id: new_id});
+    // Start the edit-functionality to the new favorite.
+    document.querySelector(`#${new_id} .fa-edit`).click();
   });
   let search_field = document.getElementById('search-field');
   let result_container = document.getElementById('reslut-container');
@@ -241,18 +253,23 @@ const callback = event => {
     // Edit the data
     for (i = 0; i < added_characters.length; i++) {
       if (added_characters[i].id === seleceted_for_edit) {
-        added_characters[i].name = choosen_name;
-        added_characters[i].homeworld = choosen_planet;
-        // Update views
         let name_element = document.querySelector(`#${added_characters[i].id} .homeworld-text`);
         let homeworld_element = document.querySelector(`#${added_characters[i].id} .name-text`);
-        name_element.innerText = choosen_planet;
-        homeworld_element.innerText = choosen_name;
-
+        
         let name_element_fav = document.querySelector(`#${added_characters[i].id}result .text-container h4`);
         let homeworld_element_fav = document.querySelector(`#${added_characters[i].id}result .text-container p`);
-        name_element_fav.innerText = choosen_name;
-        homeworld_element_fav.innerText = choosen_planet;
+        if (name_element_fav != null) {
+          if (choosen_name.length != 0){
+            added_characters[i].name = choosen_name;
+            name_element_fav.innerText = choosen_name;
+            homeworld_element.innerText = choosen_name;
+          }
+          if (choosen_planet.length != 0){
+            added_characters[i].homeworld = choosen_planet;
+            homeworld_element_fav.innerText = choosen_planet;
+            name_element.innerText = choosen_planet;
+          }
+        }
       }
     }
    // add_a_favorite(choosen_name, choosen_planet);

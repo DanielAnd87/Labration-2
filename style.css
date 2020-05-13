@@ -2,7 +2,6 @@ html body {
     background-color: black;
     font-weight: bold;
     font-family: sans-serif;
-    transition: opacity 1s;
 
 }
 #show-browse-btn, #show-favorite-btn {
@@ -17,6 +16,17 @@ html body {
     color: #FBFBFB;
     background: #2E2E2E;
 
+}
+#add-character-button {
+    font-size: x-small;
+    background: #FFE81F;
+    color: #3C3C3C;
+    height: 2em;
+    margin: 2em auto 0 auto;
+}
+#add-character-button:hover {
+    font-size: medium;
+    transition: font-size 0.5s;
 }
 button {
     background: #2E2E2E;
