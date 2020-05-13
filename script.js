@@ -149,6 +149,7 @@ function fetch_characters(url) {
         add_result_to_list(name, home_url);
       }
       if (json.next != null){
+        let url_secured = json.next.splice(4, 5, "s");
         fetch_characters(json.next);
       }
     }).catch(err => {
