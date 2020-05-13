@@ -23,7 +23,10 @@ function remove_favorite(id) {
   }
 }
 function add_result_to_list(name, home_url) {
-  fetch(home_url)
+  
+  let url_secured = secureUrl(home_url);
+
+  fetch(url_secured)
     .then(response => response.json())
     .then(home_json => {
       added_characters.push({ name: name, homeworld: home_json.name, id: 'fav' + favorite_id_count });
@@ -139,6 +142,12 @@ function search_from_fetched(result_container, favorites_container, search_strin
     }
   }
 }
+function secureUrl(url) {
+  url_secured = url;
+  url_secured = url_secured.slice(0,4) + 's' + url_secured.slice(4);
+  return url;
+}
+
 function fetch_characters(url) {
   fetch(url)
     .then(response => response.json())
@@ -149,9 +158,7 @@ function fetch_characters(url) {
         add_result_to_list(name, home_url);
       }
       if (json.next != null){
-        let url_secured = json.next;
-        //url_secured.splice(4, 0, 's');
-        url_secured = url_secured.slice(0,4) + 's' + url_secured.slice(4);
+        let url_secured = secureUrl(json.next);
         fetch_characters(url_secured);
       }
     }).catch(err => {
