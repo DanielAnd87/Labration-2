@@ -145,7 +145,7 @@ function search_from_fetched(result_container, favorites_container, search_strin
 function secureUrl(url) {
   url_secured = url;
   url_secured = url_secured.slice(0,4) + 's' + url_secured.slice(4);
-  return url;
+  return url_secured;
 }
 
 function fetch_characters(url) {
