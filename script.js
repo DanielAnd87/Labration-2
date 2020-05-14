@@ -70,15 +70,25 @@ function addToTesult(name, home_url, id, result_container, favorites_container) 
   favorite_btn.addEventListener('click', () => {
     if (!is_favorite(id)){
       add_a_favorite(name, home_url, id, favorites_container);
-      favorite_btn.style.backgroundColor = "#FFE81F";
+      favoriteButtonSwitch(true, favorite_btn);
     }
     else {
       document.querySelector(`#${id} #favorite-remover`).click();
-      favorite_btn.style.backgroundColor = "aliceblue";
+      //favorite_btn.style.backgroundColor = "aliceblue";
+      favoriteButtonSwitch(false, favorite_btn);
+
     }
   });
-
 }
+function favoriteButtonSwitch(turnOn, btnElement) {
+  if (turnOn) {
+    btnElement.style.backgroundColor = "#FFE81F";
+  }
+  else {
+    btnElement.style.backgroundColor = "aliceblue";
+  }
+}
+
 function add_a_favorite(name, homeworld, fav_id) {
   if (!is_favorite(fav_id)) {
     document.getElementById('no-favorites').style.display = 'none';
@@ -137,6 +147,7 @@ function add_a_favorite(name, homeworld, fav_id) {
       storage_container.appendChild(edit_box);
       remove_favorite(fav_id);
       document.getElementById(fav_id).outerHTML = "";
+      favoriteButtonSwitch(false, document.querySelector(`#${fav_id}result button`));
     });
   }
 }
