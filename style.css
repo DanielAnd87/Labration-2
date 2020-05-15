@@ -94,7 +94,6 @@ p, h1, h4, h5, h3{
     margin-right: auto;
     margin-left: 0;
     visibility: hidden;
-    
 }
 .result-favorite {
     padding: 1.4em;
@@ -108,19 +107,13 @@ p, h1, h4, h5, h3{
 #browse-container {
     text-align: center;
 }
-/*
-.result-favorite {
-    float: right;
-    width: 50px;
-}
-.reslut-text {
-    float: left;
-    width: 50px;
-}
-*/
 #search-field {
     text-align: center;
     margin: 1em auto -10em auto;
+    border-radius: 2em;
+    height: 2.4em;
+    padding-bottom: 0.2em;
+    background-color: white;
 }
 #favorites-container {
     float: right;

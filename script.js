@@ -5,7 +5,11 @@ let seleceted_for_edit = '';
 let added_characters = [];
 let favorite_id_count = 0;
 
-function is_favorite(id) {
+/**
+ * 
+ * @param {String} id returns true if favorites list contains character with id 
+ */
+function isFavorite(id) {
   for (i = 0; i < favorites.length; i++) {
     if (favorites[i].id === id) {
       return true;
@@ -68,7 +72,7 @@ function addToTesult(name, home_url, id, result_container, favorites_container) 
   result_box.append(favorite_btn);
   result_container.append(result_box);
   favorite_btn.addEventListener('click', () => {
-    if (!is_favorite(id)){
+    if (!isFavorite(id)){
       add_a_favorite(name, home_url, id, favorites_container);
       favoriteButtonSwitch(true, favorite_btn);
     }
@@ -90,7 +94,7 @@ function favoriteButtonSwitch(turnOn, btnElement) {
 }
 
 function add_a_favorite(name, homeworld, fav_id) {
-  if (!is_favorite(fav_id)) {
+  if (!isFavorite(fav_id)) {
     document.getElementById('no-favorites').style.display = 'none';
     // Add an element with the name of the character at favorites-div
     let favorite_name = document.createElement('h4');
